@@ -4,16 +4,15 @@
 
 #include "dijkstras.hpp"
 
-results dijkstras(graph_t& graph, const std::string& start, const std::string& target)
-{
+results dijkstras(graph_t &graph, const std::string &start,
+                  const std::string &target) {
   std::unordered_map<std::string, int> costs;
 
   // Min Heap (use edge weight to determine priority)
   std::priority_queue<node_t, std::vector<node_t>, std::greater<node_t>> mqueue;
 
   // Populate the costs for each node in graph
-  for (const auto& node: graph)
-  {
+  for (const auto &node : graph) {
     const auto [node_name, collection] = node;
     costs.insert(std::make_pair(node_name, node_name == start ? 0 : 99999));
   }
@@ -25,8 +24,7 @@ results dijkstras(graph_t& graph, const std::string& start, const std::string& t
   std::unordered_set<std::string> visited;
   std::string last_node = "";
 
-  while(!mqueue.empty())
-  {
+  while (!mqueue.empty()) {
     // Extract node with the lowest edge weight
     const auto node = mqueue.top();
     const auto node_cost = node.first;
@@ -37,15 +35,12 @@ results dijkstras(graph_t& graph, const std::string& start, const std::string& t
 
     // Check to see if we made it to the target node
     // populate the result struct if we did & return
-    if (node_name == target)
-    {
+    if (node_name == target) {
       path.push_back(node_name);
 
       res.path = std::move(
-        std::vector<std::string>(
-        std::make_move_iterator(path.begin()),
-        std::make_move_iterator(path.end())
-        ));
+          std::vector<std::string>(std::make_move_iterator(path.begin()),
+                                   std::make_move_iterator(path.end())));
 
       res.min_cost = node_cost;
 
@@ -57,8 +52,7 @@ results dijkstras(graph_t& graph, const std::string& start, const std::string& t
 
     // Check all neighbors of the current node
     // update costs, and emplace back unvisited neighbors into the heap
-    for (const auto& neighbor : graph[node_name])
-    {
+    for (const auto &neighbor : graph[node_name]) {
       const auto neighbor_cost = neighbor.first;
       const auto neighbor_name = neighbor.second;
 
