@@ -8,7 +8,7 @@ results dijkstras(graph_t &graph, const std::string &start,
                   const std::string &target) {
   std::unordered_map<std::string, int> costs;
 
-  // Min Heap (use edge weight to determine priority)
+  // Min Heap (use (node + edge) weight to determine priority)
   std::priority_queue<node_t, std::vector<node_t>, std::greater<node_t>> mqueue;
 
   // Populate the costs for each node in graph
