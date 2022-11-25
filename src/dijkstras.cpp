@@ -4,8 +4,9 @@
 
 #include "dijkstras.hpp"
 
-results dijkstras(graph_t &graph, const std::string &start,
+results dijkstras(GraphPlusPlus::unordered_graph_primitive_t &graph, const std::string &start,
                   const std::string &target) {
+  using GraphPlusPlus::node_t;
   std::unordered_map<std::string, int> costs;
 
   // Min Heap (use (node + edge) weight to determine priority)
