@@ -4,7 +4,7 @@
 #include "dijkstras.hpp"
 
 void app() {
-  using GraphPlusPlus::Graph;
+  //using GraphPlusPlus::Graph;
   using GraphPlusPlus::node_collection;
   using GraphPlusPlus::unordered_graph_primitive_t;
 
@@ -20,12 +20,12 @@ void app() {
   ugraph.insert(std::make_pair("D", node_collection{}));
   ugraph.insert(std::make_pair("E", node_collection{{1, "D"}}));
 
-  Graph graph(ugraph);
+  //Graph graph(ugraph);
 
   // Run Dijkstra's algorithm on the aforementioned graph & collect results from
   // the run
-  auto gp_graph = graph.get_as_unordered_map();
-  results res = dijkstras(gp_graph, "A", "D");
+  //auto gp_graph = graph.get_as_unordered_map();
+  results res = dijkstras(ugraph, "A", "D");
 
   std::cout << "Cost: " << res.min_cost << std::endl;
   std::cout << "Path:" << std::endl;
